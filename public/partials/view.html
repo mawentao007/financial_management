@@ -1,0 +1,74 @@
+
+
+    <div ng-controller="UserCtrl as uc">
+        <div class="jumbotron">
+            <h2>A Modern Web Template</h2>
+            <p class="pull-right">... a UI created using AngularJS and Bootstrap</p>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <th>
+                    <a ng-href="/#/users/create" class="btn btn-primary pull-right" id="btn_user_create">Add User</a>
+                </th>
+                <th>
+                    <a href="/post" target="_self" class="btn btn-primary pull-right" id="btn_post">Add Post</a>
+                </th>
+
+                </tr>
+
+                <hr>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Users...">
+                <hr>
+            </div>
+
+
+            <table id="user_list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>userName</th>
+                    <th>email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="usr in uc.users | filter:searchText">
+                    <td>
+                        {{ usr.userName }}
+                    </td>
+                    <td>
+                        {{ usr.email }}
+                    </td>
+
+                    <td>
+                        <a ng-href="/#/users/edit/{{usr.userName}}/{{usr.email}}" class="btn btn-success pull-right" id="btn_user_update">Edit User</a>
+                    </td>
+                    <td>
+                        <a ng-href="/#/users/{{usr.userName}}/{{usr.email}}" class="btn btn-success pull-right" id="btn_user_delete">delete User</a>
+                        <!--a ng-click="uc.deleteUser(usr.userName,usr.email)" class="btn btn-success pull-right" id="btn_user_delete2">delete User2</a-->
+                    </td>
+                </tr>
+                <tr ng-hide="uc.users.length">
+                    <td colspan="3">
+                        <p class="text-center">No Users Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>
+                Debug
+            </h3>
+            <hr>
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Json Data <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <pre>{{ uc.users | json }}</pre>
+                </accordion-group>
+            </accordion>
+        </div>
+
+    </div>

@@ -1,0 +1,78 @@
+@import models.Post.ModelComment
+@(postIdWithContentList:Map[String,List[(String,String)]],filesWithId:Option[List[(String,reactivemongo.api.gridfs.ReadFile[reactivemongo.bson.BSONValue])]],commentForm:Form[ModelComment])
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>The Special One</title>
+            <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href='@routes.Assets.at("lib/bootstrap/css/bootstrap.css")'>
+        <link rel="stylesheet" href='@routes.Assets.at("lib/bootstrap/css/bootstrap-theme.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
+
+    </head>
+    <body>
+        <header>
+
+        </header>
+
+            <!-- Fixed navbar -->
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">首页</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            @if(filesWithId.isDefined) {
+                @filesWithId.get.map { file =>
+                    <div id="postP" align="center">
+                        <img src="@controllers.Post.routes.Post.getPostById(file._1)"/>
+                        <a href="@controllers.Post.routes.Post.deletePostById(file._1)">delete</a>
+                    </div>
+                    <div id="postComment">
+                        @postIdWithContentList.get(file._1).map { comments =>
+                            @comments.map{ comment =>
+                              <p>@comment._2</p>
+                              <a href="@controllers.Post.routes.Comment.deleteCommentById(comment._1)" class="delete">删除 </a>
+                            }
+                        }
+                    </div>
+                    @helper.form(action = controllers.Post.routes.Comment.makeComment(file._1)) {
+                    @helper.textarea(commentForm("content"))
+                        <div class="form-actions">
+                            <input class="btn btn-primary" type="submit">
+                        </div>
+                    }
+                }
+            }
+
+
+        @helper.form(action = controllers.Post.routes.Post.post(), 'enctype -> "multipart/form-data") {
+
+            <input type="file" name="picture">
+
+            <p>
+                <input type="submit">
+            </p>
+
+        }
+
+
+        </div>
+
+        <footer>
+            <hr/>
+            <div>
+                <span>&copy; @Messages("application.name")</span>
+            </div>
+            <div>
+                <span app-version></span>
+            </div>
+        </footer>
+
+    </body>
+
+</html>

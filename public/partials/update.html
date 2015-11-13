@@ -1,0 +1,48 @@
+<div ng-controller="UpdateUserCtrl as uuc">
+    <h1>Update User</h1>
+
+    <form id="UpdateUserForm" name="UpdateUserForm" class="form-horizontal" role="form"
+          ng-submit="uuc.updateUser()">
+        <legend class="sm-col-12">Basic Information</legend>
+
+        <div class="form-group">
+            <label id="lbl_email" for="email" class="col-sm-4 control-label">email</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="email" id="email" placeholder="email"
+                       ng-model="uuc.user.email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_userName" for="userName" class="col-sm-4 control-label">user name</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="userName" id="userName" placeholder="userName"
+                       ng-model="uuc.user.userName">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_password" for="password" class="col-sm-4 control-label">password</label>
+
+            <div class="col-sm-8">
+                <input type="password" class="form-control" name="password" id="password" placeholder=""
+                       ng-model="uuc.user.password">
+            </div>
+        </div>
+
+        <pre>{{ uuc.user | json }}</pre>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                <button type="submit" class="btn btn-success" id="btn_create">Update User</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+

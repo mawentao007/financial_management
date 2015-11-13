@@ -1,0 +1,22 @@
+2015-11-13 19:21:13,131 - [INFO] - from play in pool-4-thread-4 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2015-11-13 19:21:44,767 - [INFO] - from application in play-internal-execution-context-1 
+ReactiveMongoPlugin starting...
+
+2015-11-13 19:21:44,791 - [INFO] - from application in play-internal-execution-context-1 
+ReactiveMongoPlugin successfully started with db 'one'! Servers:
+		[localhost:27017]
+
+2015-11-13 19:21:44,794 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-11-13 19:21:45,143 - [INFO] - from play in New I/O worker #1 
+Starting application default Akka system.
+
+2015-11-13 19:28:33,602 - [INFO] - from application in play-akka.actor.default-dispatcher-12 
+1
+
+2015-11-13 19:30:32,813 - [INFO] - from application in play-akka.actor.default-dispatcher-6 
+Serving index page...
+
